@@ -2,8 +2,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy #me permite crear bases de datos usando solo python, ya que te evita tener que usar un lenguaje de base de datos
 from flask_migrate import Migrate#este se encarga de la gestion de las migraciones(modificaciones) que le vaya haciendo a la base de datos, eliminar, agregar, modifcar cosas...
 from config import Config
-
-
+from flask_login import LoginManager
 app = Flask(__name__,static_url_path= "/static")
 app.config.from_object(Config)
 #estas dos configuraciones extras son simplmente a modo eficiencia. Los he puesto aqui pero podrían ir perfectamente en el fichero de config.py
@@ -16,4 +15,5 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///flaskdb.db'
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
+login= LoginManager(app)
 from app import routes
