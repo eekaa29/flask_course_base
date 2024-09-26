@@ -13,7 +13,7 @@ app.config["MESSAGES_PER_PAGE"]=2
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///flaskdb.db'
 
 db = SQLAlchemy(app)
-migrate = Migrate(app, db)
+migrate = Migrate(app,db)
 
 login= LoginManager(app)
 from app import routes

@@ -18,7 +18,7 @@ class CocktailDB(db.Model):#Entre paréntesis he puesto eso ya que queremos que 
 
 class Message(db.Model):
     id = db.Column(db.Integer, primary_key= True)
-    render_id= db.Column(db.Integer, db.ForeignKey("user.id"))#En estos dos casos le estoy diciendo que el valor hace referencia a camposo de otra tabla
+    sender_id= db.Column(db.Integer, db.ForeignKey("user.id"))#En estos dos casos le estoy diciendo que el valor hace referencia a camposo de otra tabla
     recipient_id= db.Column(db.Integer, db.ForeignKey("user.id"))#Son campos de otra tabla, y aquí establezco la conexión(de derecha a izquierda)representada en el mapa de flujo
     body= db.Column(db.String(140))
     timestamp= db.Column(db.DateTime, index= True, default=datetime.utcnow)
@@ -35,7 +35,8 @@ class Message(db.Model):
 class User(UserMixin,db.Model):
     id= db.Column(db.Integer, primary_key= True)
     username = db.Column(db.String(64),index= True, unique= True)
-    email = db.Column(db.String(120),index= True, unique= True)
+    mail = db.Column(db.String(120),index= True, unique= True)#tengo que tener en cuenta que me confundí y la variable la llamé mail en vez de email, 
+    #ns como cambiar la migración, así que asi se queda de momento
     password_hash=db.Column(db.String(120))
     last_message_read_time= db.Column(db.DateTime)
 
